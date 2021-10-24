@@ -39,6 +39,11 @@ class TrackCell extends StatelessWidget {
                 ),
                 Image.network(
                   track.image.getImageUrlFrom(size: img.Size.small),
+                  errorBuilder: (ctx, exception, stackTrace) {
+                    return const CircleAvatar(
+                      child: Icon(Icons.error),
+                    );
+                  },
                   width: 40,
                   height: 40,
                 ),

@@ -23,9 +23,8 @@ class HomePage extends StatelessWidget {
       appBar: homePageProvider.showSearch
           ? SearchAppBar(
               textEditingController: searchTextEditingController,
-              onEditingComplete: () => trackSearchProvider.searchByTrackName(
-                searchTextEditingController.text,
-              ),
+              onEditingComplete: () => trackSearchProvider.subject
+                  .add(searchTextEditingController.text),
               actions: [
                 AppBarCloseIconButton(homePageProvider: homePageProvider)
               ],
