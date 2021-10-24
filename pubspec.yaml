@@ -36,15 +36,16 @@ dependencies:
   http: ^0.13.4
   injectable: ^1.5.0
   json_annotation: ^4.3.0
+  mockito: ^5.0.16
   provider: ^6.0.1
   rxdart: ^0.27.2
   url_launcher: ^6.0.12
+  logger: ^1.1.0
 
 dev_dependencies:
   flutter_lints: ^1.0.0
   envify_generator: any
   freezed: ^0.15.0+1
-  logger: ^1.1.0
   build_runner:
   flutter_test:
     sdk: flutter
@@ -61,3 +62,4 @@ flutter:
   uses-material-design: true
   assets:
     - .env
+    - assets/track_test.json
