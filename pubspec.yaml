@@ -62,4 +62,3 @@ flutter:
   uses-material-design: true
   assets:
     - .env
-    - assets/track_test.json
