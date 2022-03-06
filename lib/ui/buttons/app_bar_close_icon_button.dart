@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:lastfm_client/providers/home_page_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lastfm_client/ui/pages/home/cubit/app_bar_cubit.dart';
 
 class AppBarCloseIconButton extends StatelessWidget {
   const AppBarCloseIconButton({
     Key? key,
-    required this.homePageProvider,
   }) : super(key: key);
-
-  final HomePageProvider homePageProvider;
 
   @override
   Widget build(BuildContext context) {
-    return CloseButton(onPressed: () => homePageProvider.onSearchIconTapped());
+    return CloseButton(
+        onPressed: () => context.read<AppBarCubit>().onSearchIconTapped());
   }
 }

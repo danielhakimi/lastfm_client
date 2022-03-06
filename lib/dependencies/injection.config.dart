@@ -10,8 +10,9 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:logger/logger.dart' as _i4;
 
 import '../networking/api_client.dart' as _i5;
-import '../providers/track_search_provider.dart'
-    as _i6; // ignore_for_file: unnecessary_lambdas
+import '../repositories/track_respository.dart' as _i6;
+import '../ui/pages/home/cubit/track_cubit.dart'
+    as _i7; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -28,8 +29,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i3.Client>(instanceName: 'httpClient'),
       get<String>(instanceName: 'baseUrl'),
       get<_i4.Logger>(instanceName: 'logger')));
-  gh.factory<_i6.TrackSearchProvider>(
-      () => _i6.TrackSearchProvider(get<_i5.ApiClient>()));
+  gh.factory<_i6.TrackRepository>(
+      () => _i6.TrackRepository(get<_i5.ApiClient>()));
+  gh.factory<_i7.TrackCubit>(() => _i7.TrackCubit(get<_i6.TrackRepository>()));
   return get;
 }
 

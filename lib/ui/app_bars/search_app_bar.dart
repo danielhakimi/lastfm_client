@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;

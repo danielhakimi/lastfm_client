@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lastfm_client/dependencies/injection.dart';
-import 'package:lastfm_client/providers/providers.dart';
+import 'package:lastfm_client/networking/api_client.dart';
+import 'package:lastfm_client/repositories/track_respository.dart';
+import 'package:lastfm_client/ui/pages/home/cubit/app_bar_cubit.dart';
+import 'package:lastfm_client/ui/pages/home/cubit/track_cubit.dart';
 import 'package:lastfm_client/ui/pages/home/home_page.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   configureDependencies();
@@ -26,9 +28,20 @@ class _AppState extends State<App> {
         brightness: Brightness.dark,
       ),
       themeMode: ThemeMode.dark,
-      home: MultiProvider(
-        providers: providers,
-        child: HomePage(),
+      home: RepositoryProvider(
+        create: (context) => TrackRepository(getIt<ApiClient>()),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider<AppBarCubit>(
+              create: (BuildContext context) => AppBarCubit(),
+            ),
+            BlocProvider<TrackCubit>(
+              create: (BuildContext context) =>
+                  TrackCubit(getIt<TrackRepository>()),
+            ),
+          ],
+          child: HomePage(),
+        ),
       ),
     );
   }
